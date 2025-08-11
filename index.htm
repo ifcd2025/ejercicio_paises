@@ -14,6 +14,16 @@
         #errores::backdrop {
             background-color: rgba(0, 0, 0, 0.473);
         }
+
+        .pais {
+            animation: animacionMostrarPaises .5s;
+        }
+
+        @keyframes animacionMostrarPaises {
+            50% {
+                transform: translateX(-200px);
+            }
+        }
    </style>
    <!-- module pues hacemos un import dentro del .js
     module implica también que sea defer -->

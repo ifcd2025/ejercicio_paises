@@ -49,6 +49,9 @@ function mostrarPaises(paises) {
 
         nuevoClon.querySelector(".idiomas").textContent = devolverCadenaIdioma(p.languages);
     }
+    const buscar = document.getElementById("buscar");
+    buscar.disabled = false;
+    buscar.value = "Buscar";
 }
 
 function mostrarErrores(errores) {
@@ -59,6 +62,9 @@ function mostrarErrores(errores) {
     // no podemos seguir usando la página hasta que lo cerremos.
     // La otra opción es show()
     dialogoErrores.showModal();
+    const buscar = document.getElementById("buscar");
+    buscar.disabled = false;
+    buscar.value = "Buscar";
 }
 
 function buscar() {
@@ -71,6 +77,9 @@ function buscar() {
     const porIdioma = document.getElementById("porIdioma").checked;
     const nombre = document.getElementById("nombre").value.trim();
     const idioma = document.getElementById("idioma").value.trim();
+    const buscar = document.getElementById("buscar");
+    buscar.disabled = true;
+    buscar.value = "Cargando";
     if(porNombre) {
         obtenerPaisesPorNombre(nombre, mostrarPaises, mostrarErrores);
     } else if(porIdioma) {
