@@ -49,5 +49,16 @@ function buscar() {
     }
 }
 
+function cerrarDialogo() {
+    document.getElementById("errores").close();
+}
+
 // Como el botón no es de tipo submit, usamos el evento click 
 document.getElementById("buscar").addEventListener("click", buscar);
+
+document.getElementById("cerrar").addEventListener("click", cerrarDialogo);
+
+// Si queremos hacer algo cuando se cierre el cuadro de diálogo, ya sea por
+// pulsar el botón o que el usuario pulse ESC, podemos suscribirnos al evento
+// close del mismo
+//document.getElementById("errores").addEventListener("close", funcionDeseada);
