@@ -21,7 +21,19 @@ function validar() {
 }
 
 function mostrarPaises(paises) {
-    console.log(paises);
+    const info = document.getElementById("info");
+    info.textContent = "";
+    const clon = document.getElementById("clon");
+    for(const p of paises) {
+        // Casi siempre hay que poner true, pues si no, no clona los hijos
+        const nuevoClon = clon.cloneNode(true);
+        nuevoClon.id = "";
+        nuevoClon.classList.remove("d-none");
+        info.appendChild(nuevoClon);
+        nuevoClon.querySelector(".nombreOficial").textContent = p.name.official;
+        nuevoClon.querySelector(".capital").textContent = p.capital;
+        nuevoClon.querySelector(".idiomas").textContent = p.languages;
+    }
 }
 
 function mostrarErrores(errores) {

@@ -38,6 +38,7 @@
         <input type="button" id="buscar" name="buscar" value="buscar"
             class="btn btn-primary d-block ms-auto me-0 my-3">
     </form>
+    <div id="info" class="w-50 p-2 mx-auto my-2"></div>
     <!-- Pensada para cuadro de diálogos. Solo aparece cuando
      se lo digamos en JS -->
     <dialog id="errores" class="p-2">
@@ -46,5 +47,13 @@
         <input type="button" id="cerrar" name="cerrar" value="cerrar"
             class="btn btn-primary mt-2 ms-auto me-0 d-block" >
     </dialog>
+    <div class="pais bg-danger-subtle my-3 p-2 rounded-1 shadow d-none" id="clon">
+        <!-- No vamos a crear estilos para las clases nombreOficial, moneda
+         e idiomas; simplemnte las definimos para seleccionar fácilmente
+         los elementos en JS, sin tener que usar nth-of-type -->
+        <div class="nombreOficial fw-bold">Reino de España</div>
+        <div class="capital">Madrid</div>
+        <div class="idiomas">Catellano, Gallego</div>
+    </div>
 </body>
 </html>
