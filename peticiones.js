@@ -10,6 +10,25 @@ export function obtenerPaisesPorNombre(nombre, funcionMostrarDatos, funcionMostr
     .then(respuesta => {
         if(respuesta.ok) {
             return respuesta.json();
+        } else if(respuesta.status == 404){
+            // Si el pais o idioma no se encuentran, devuelve un 404
+            return respuesta.json();
+        } else {
+            throw new Error("Error obteniendo los países: " + respuesta.status);
+        }
+    })
+    .then(datos => funcionMostrarDatos(datos))
+    .catch(error => funcionMostrarError(error));
+}
+
+export function obtenerPaisesPorIdioma(idioma, funcionMostrarDatos, funcionMostrarError) {
+    fetch(EndPoints.idioma.replace("IDIOMA", idioma))
+    .then(respuesta => {
+        if(respuesta.ok) {
+            return respuesta.json();
+        } else if(respuesta.status == 404){
+            // Si el pais o idioma no se encuentran, devuelve un 404
+            return respuesta.json();
         } else {
             throw new Error("Error obteniendo los países: " + respuesta.status);
         }

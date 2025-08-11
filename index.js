@@ -1,4 +1,4 @@
-import { obtenerPaisesPorNombre } from "./peticiones.js";
+import { obtenerPaisesPorNombre, obtenerPaisesPorIdioma } from "./peticiones.js";
 
 function validar() {
     const errores = [];
@@ -20,7 +20,21 @@ function validar() {
     return errores;
 }
 
+// Los idiomas vienen en el JSON como un objeto con un atributo por cada
+// idioma. Con values obtenemos un array con todos los atributos y con join se crea
+// una cadena con todos ellos separados por el valor indicado
+// Con trim quitamos el espacio que queda después del último idioma
+function devolverCadenaIdioma(idiomas) {
+    return Object.values(idiomas).join(" ").trim();
+}
+
 function mostrarPaises(paises) {
+    // Si el país o moneda no se encuentran, la API devuelve:
+    // {"message":"Not Found","status":404}
+    if(paises.message != undefined) {
+        mostrarErrores("El valor no se encuentra");
+        return;
+    }
     const info = document.getElementById("info");
     info.textContent = "";
     const clon = document.getElementById("clon");
@@ -32,7 +46,8 @@ function mostrarPaises(paises) {
         info.appendChild(nuevoClon);
         nuevoClon.querySelector(".nombreOficial").textContent = p.name.official;
         nuevoClon.querySelector(".capital").textContent = p.capital;
-        nuevoClon.querySelector(".idiomas").textContent = p.languages;
+
+        nuevoClon.querySelector(".idiomas").textContent = devolverCadenaIdioma(p.languages);
     }
 }
 
@@ -58,6 +73,8 @@ function buscar() {
     const idioma = document.getElementById("idioma").value.trim();
     if(porNombre) {
         obtenerPaisesPorNombre(nombre, mostrarPaises, mostrarErrores);
+    } else if(porIdioma) {
+        obtenerPaisesPorIdioma(idioma, mostrarPaises, mostrarErrores);
     }
 }
 
