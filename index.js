@@ -1,4 +1,4 @@
-import { obtenerPaisesPorNombre, obtenerPaisesPorIdioma } from "./peticiones.js";
+import { obtenerPaisesPorNombre, obtenerPaisesPorIdioma, obtenerPaisesPorMoneda } from "./peticiones.js";
 
 function validar() {
     const errores = [];
@@ -6,6 +6,7 @@ function validar() {
     const porIdioma = document.getElementById("porIdioma").checked;
     const nombre = document.getElementById("nombre").value.trim();
     const idioma = document.getElementById("idioma").value.trim();
+    const moneda = document.getElementById("moneda").value.trim();
     if(porNombre) {
         if(nombre.length == 0) {
             errores.push("El nombre del país está vacío");
@@ -13,6 +14,10 @@ function validar() {
     } else if(porIdioma) {
          if(idioma.length == 0) {
             errores.push("El nombre del idioma está vacío");
+        }
+    } else if(porMoneda) {
+         if(moneda.length == 0) {
+            errores.push("El nombre de la moneda está vacío");
         }
     } else {
         errores.push("Debes marcar alguna de las opciones");
@@ -75,8 +80,10 @@ function buscar() {
     }
     const porNombre = document.getElementById("porNombre").checked;
     const porIdioma = document.getElementById("porIdioma").checked;
+    const porMoneda = document.getElementById("porMoneda").checked;
     const nombre = document.getElementById("nombre").value.trim();
     const idioma = document.getElementById("idioma").value.trim();
+    const moneda = document.getElementById("moneda").value.trim();
     const buscar = document.getElementById("buscar");
     buscar.disabled = true;
     buscar.value = "Cargando";
@@ -84,6 +91,8 @@ function buscar() {
         obtenerPaisesPorNombre(nombre, mostrarPaises, mostrarErrores);
     } else if(porIdioma) {
         obtenerPaisesPorIdioma(idioma, mostrarPaises, mostrarErrores);
+    } else if(porMoneda) {
+        obtenerPaisesPorMoneda(moneda, mostrarPaises, mostrarErrores);
     }
 }
 

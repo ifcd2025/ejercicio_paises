@@ -62,3 +62,8 @@ export function obtenerPaisesPorIdioma(idioma, funcionMostrarDatos, funcionMostr
     obtenerPaises(EndPoints.idioma.replace("IDIOMA", idioma)
         , funcionMostrarDatos, funcionMostrarError);
 }
+
+export function obtenerPaisesPorMoneda(moneda, funcionMostrarDatos, funcionMostrarError) {
+    obtenerPaises(EndPoints.moneda.replace("MONEDA", moneda)
+        , funcionMostrarDatos, funcionMostrarError);
+}
